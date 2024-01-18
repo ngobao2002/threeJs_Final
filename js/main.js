@@ -2,6 +2,59 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { TextureLoader } from 'three';
 
+const keyIndicators = {
+  a: document.getElementById('keyA'),
+  s: document.getElementById('keyS'),
+  d: document.getElementById('keyD'),
+  w: document.getElementById('keyW'),
+};
+
+function updateKeyIndicator(key, isPressed) {
+  keyIndicators[key].style.backgroundColor = isPressed ? '#4CAF50' : '#ddd'; // Change color when pressed
+}
+
+window.addEventListener('keydown', (event) => {
+  switch (event.code) {
+    case 'KeyA':
+      keys.a.pressed = true;
+      updateKeyIndicator('a', true);
+      break;
+    case 'KeyD':
+      keys.d.pressed = true;
+      updateKeyIndicator('d', true);
+      break;
+    case 'KeyS':
+      keys.s.pressed = true;
+      updateKeyIndicator('s', true);
+      break;
+    case 'KeyW':
+      keys.w.pressed = true;
+      updateKeyIndicator('w', true);
+      break;
+  }
+});
+
+window.addEventListener('keyup', (event) => {
+  switch (event.code) {
+    case 'KeyA':
+      keys.a.pressed = false;
+      updateKeyIndicator('a', false);
+      break;
+    case 'KeyD':
+      keys.d.pressed = false;
+      updateKeyIndicator('d', false);
+      break;
+    case 'KeyS':
+      keys.s.pressed = false;
+      updateKeyIndicator('s', false);
+      break;
+    case 'KeyW':
+      keys.w.pressed = false;
+      updateKeyIndicator('w', false);
+      break;
+  }
+});
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(4.61, 2.74, 8);
