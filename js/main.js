@@ -195,6 +195,22 @@ gameOverPopup.style.padding = '20px';
 gameOverPopup.style.display = 'none';
 document.body.appendChild(gameOverPopup);
 
+// const contentGameOver = document.createElement('div');
+// contentGameOver.textContent = 'Game over';
+// contentGameOver.style.margin = 'auto';
+// contentGameOver.style.textAlign = 'center';
+// gameOverPopup.appendChild(contentGameOver);
+
+function updatePassedEnemies() {
+  passedEnemies++;
+}
+
+const contentPoint = document.createElement('div');
+contentPoint.innerHTML = '<h1>Game Over</h1>';
+contentPoint.style.margin = 'auto';
+contentPoint.style.textAlign = 'center';
+gameOverPopup.appendChild(contentPoint);
+
 const restartGameOverButton = document.createElement('button');
 restartGameOverButton.textContent = 'Restart, ấn không được phải không reload trang đi hi hi';
 restartGameOverButton.style.padding = '10px';
@@ -206,16 +222,9 @@ restartGameOverButton.addEventListener('click', () => {
   isGameOver = false;
   passedEnemies = 0;
   gameOverPopup.style.display = 'none';
-  restartButton.visible = false;
-
-  enemies.forEach((enemy) => {
-    scene.remove(enemy);
-  });
-  enemies = [];
-
-  cube.reset();
-
-  animate();
+  
+  console.log('check ckick')
+  location.reload();
   
 });
 
@@ -226,12 +235,11 @@ passedEnemiesElement.style.left = '10px';
 passedEnemiesElement.style.color = 'white';
 document.body.appendChild(passedEnemiesElement);
 
-function updatePassedEnemies() {
-  passedEnemies++;
-}
+
 
 function displayPassedEnemies() {
   passedEnemiesElement.textContent = `Passed Enemies: ${passedEnemies}`;
+  console.log('abc', passedEnemies)
 }
 
 function displayGameOver() {
@@ -246,18 +254,18 @@ popupMesh.visible = false;
 scene.add(popupMesh);
 
 const popupText = document.createElement('div');
-popupText.innerHTML = '<h1>Game Over</h1><p>Your Score: ' + passedEnemies + '</p>';
-popupText.style.color = 'white';
-popupText.style.textAlign = 'center';
-popupText.style.marginTop = '30%';
+// popupText.innerHTML = '<h1>Game Over</h1><p>Your Score: ' + passedEnemies + '</p>';
+// popupText.style.color = 'white';
+// popupText.style.textAlign = 'center';
+// popupText.style.marginTop = '30%';
 popupMesh.userData.text = popupText;
 document.body.appendChild(popupText);
 
 const restartPopupButton = document.createElement('button');
-restartPopupButton.textContent = 'Restart';
-restartPopupButton.style.padding = '10px';
-restartPopupButton.style.marginTop = '10px';
-restartPopupButton.style.cursor = 'pointer';
+// restartPopupButton.textContent = 'Restart';
+// restartPopupButton.style.padding = '10px';
+// restartPopupButton.style.marginTop = '10px';
+// restartPopupButton.style.cursor = 'pointer';
 popupText.appendChild(restartPopupButton);
 
 restartPopupButton.addEventListener('click', () => {
@@ -274,6 +282,8 @@ restartPopupButton.addEventListener('click', () => {
 
   animate();
 });
+
+
 
 function animate() {
   if (isGameOver) {

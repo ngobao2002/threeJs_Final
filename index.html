@@ -4,32 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
+
+    <style>
+        .hidden-button {
+            display: none;
+            padding: 10px 20px; /* Có thể điều chỉnh kích thước bằng cách thay đổi giá trị padding */
+            font-size: 16px; /* Có thể điều chỉnh kích thước chữ bằng cách thay đổi giá trị font-size */
+            background-color: #4CAF50; /* Màu nền của nút */
+            color: white; /* Màu chữ của nút */
+            border: none; /* Loại bỏ đường viền */
+            cursor: pointer;
+            border-radius: 5px; /* Bo tròn góc của nút */
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                var button = document.getElementById("hiddenButton");
+                button.style.display = "block";
+            }, 5000); // 10 giây
+        });
+    </script>
 </head>
 <body>
-    <style>
-        body {
-          margin: 0;
-          background: #0c4a6e;
-        }
-      </style>
-      
-      <script
-        async
-        src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"
-      ></script>
-      
-      <script type="importmap">
-        {
-          "imports": {
-            "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
-          }
-        }
-      </script>
-      
-      <script type="module" src="js/main.js">
+    <div class="scene">
+        <div class="shadow"></div>
+        <div class="jumper">
+            <div class="spinner">
+                <div class="scaler">
+                    <div class="loader">
+                        <div class="cuboid">
+                            <div class="cuboid__side"></div>
+                            <div class="cuboid__side"></div>
+                            <div class="cuboid__side"></div>
+                            <div class="cuboid__side"></div>
+                            <div class="cuboid__side"></div>
+                            <div class="cuboid__side"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="game.html"><button id="hiddenButton" class="hidden-button">Go to Another Page</button></a>
         
-      </script>
+    </div>
 </body>
 </html>
