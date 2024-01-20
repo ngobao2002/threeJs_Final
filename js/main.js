@@ -1,6 +1,26 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
+
+function loadModel(modelUrl, position, scale) {
+  const loader = new GLTFLoader();
+
+  loader.load(
+    modelUrl,
+    (gltf) => {
+      const model = gltf.scene;
+      model.position.copy(position);
+      model.scale.set(scale, scale, scale);
+
+      scene.add(model);
+    },
+    undefined,
+    (error) => {
+      console.error('Error loading model', error);
+    }
+  );
+}
 
 //Nghe sự kiện Bấm và Nhả Phím:
 const keyIndicators = {
@@ -59,6 +79,13 @@ window.addEventListener('keyup', (event) => {
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(4.61, 2.74, 8);
+
+const cubeModelUrl = 'model.gltf'; // Replace with the actual path to your cube model
+const cubePosition = { x: 0, y: 0, z: 0 };
+const cubeScale = 1;
+
+// Load model for the cube
+loadModel(cubeModelUrl, cubePosition, cubeScale);
 
 const backgroundTextureUrl = 'assets/photo-1465101162946-4377e57745c3.avif';
 const backgroundTexture = new TextureLoader().load(backgroundTextureUrl);
