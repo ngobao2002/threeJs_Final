@@ -9,22 +9,31 @@
     <style>
         .hidden-button {
             display: none;
-            padding: 10px 20px; /* Có thể điều chỉnh kích thước bằng cách thay đổi giá trị padding */
-            font-size: 16px; /* Có thể điều chỉnh kích thước chữ bằng cách thay đổi giá trị font-size */
-            background-color: #4CAF50; /* Màu nền của nút */
-            color: white; /* Màu chữ của nút */
-            border: none; /* Loại bỏ đường viền */
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
             cursor: pointer;
-            border-radius: 5px; /* Bo tròn góc của nút */
+            border-radius: 5px;
         }
     </style>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Thêm thẻ âm thanh vào trang
+            var audio = document.createElement("audio");
+            audio.src = "ghosts-on-film-185898.mp3"; // Thay đổi đường dẫn đến tệp âm thanh
+            audio.autoplay = true;
+            audio.loop = true; // Lặp lại âm thanh
+
+            // Thêm thẻ âm thanh vào thẻ body
+            document.body.appendChild(audio);
+
             setTimeout(function() {
                 var button = document.getElementById("hiddenButton");
                 button.style.display = "block";
-            }, 2000); // 10 giây
+            }, 2000);
         });
     </script>
 </head>
@@ -48,7 +57,6 @@
             </div>
         </div>
         <a href="game.html"><button id="hiddenButton" class="hidden-button">Nhấn vào để chơi game</button></a>
-        
     </div>
 </body>
 </html>

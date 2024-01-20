@@ -60,7 +60,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(4.61, 2.74, 8);
 
-const backgroundTextureUrl = 'assets/normal.jpg';
+const backgroundTextureUrl = 'assets/photo-1465101162946-4377e57745c3.avif';
 const backgroundTexture = new TextureLoader().load(backgroundTextureUrl);
 
 const backgroundGeometry = new THREE.BoxGeometry(1000, 1000, 1000); // Adjust the size as needed
@@ -180,8 +180,9 @@ const ground = new Box({
   width: 10,
   height: 0.5,
   depth: 50,
-  color: '#0369a1',
+  color: '#0369b1',
   position: { x: 0, y: -2, z: 0 },
+  textureUrl: 'assets/moon.jpg', 
 });
 
 ground.receiveShadow = true;

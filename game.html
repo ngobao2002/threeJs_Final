@@ -5,56 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="style/style.css"> -->
-</head>
-<body>
     <style>
         body {
           margin: 0;
           background: #0c4a6e;
+          position: relative;
         }
         #keyIndicators {
-        position: fixed;
-        bottom: 20px; /* Adjust the distance from the bottom as needed */
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-      }
-
-      .keyIndicator {
-        width: 40px;
-        height: 40px;
-        background-color: #ddd;
-        margin-right: 10px;
-        text-align: center;
-        line-height: 30px;
-        font-size: 16px;
-        border-radius: 5px;
-      }
-      </style>
-      <div id="keyIndicators">
-        <div id="keyA" class="keyIndicator">A</div>
-        <div id="keyS" class="keyIndicator">S</div>
-        <div id="keyD" class="keyIndicator">D</div>
-        <div id="keyW" class="keyIndicator">W</div>
-        <div id="keySpace" class="keyIndicator">Space</div>
-      </div>
-      <script
-        async
-        src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"
-      ></script>
-      
-      <script type="importmap">
-        {
-          "imports": {
-            "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
-          }
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
         }
-      </script>
+
+        .keyIndicator {
+          width: 40px;
+          height: 40px;
+          background-color: #ddd;
+          margin-right: 10px;
+          text-align: center;
+          line-height: 30px;
+          font-size: 16px;
+          border-radius: 5px;
+        }
+
+        /* Thêm CSS để cố định vị trí của thẻ audio */
+        audio {
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="keyIndicators">
+      <div id="keyA" class="keyIndicator">A</div>
+      <div id="keyS" class="keyIndicator">S</div>
+      <div id="keyD" class="keyIndicator">D</div>
+      <div id="keyW" class="keyIndicator">W</div>
+      <div id="keySpace" class="keyIndicator">Space</div>
+    </div>
+
+    <!-- Thêm thẻ audio vào trang -->
+    <audio controls autoplay loop>
+      <source src="70s-psychedelic-rock-drums-sound-185857.mp3" type="audio/mp3">
+      Your browser does not support the audio tag.
+    </audio>
+
+    <script
+      async
+      src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"
+    ></script>
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+        }
+      }
+    </script>
+    
+    
+    <script type="module" src="js/main.js">
       
-      
-      <script type="module" src="js/main.js">
-        
-      </script>
+    </script>
 </body>
 </html>
