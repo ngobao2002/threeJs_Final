@@ -3,6 +3,32 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { TextureLoader } from 'three';
 
+const instructionsPopup = document.createElement('div');
+instructionsPopup.style.position = 'absolute';
+instructionsPopup.style.top = '50%';
+instructionsPopup.style.left = '50%';
+instructionsPopup.style.transform = 'translate(-50%, -50%)';
+instructionsPopup.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+instructionsPopup.style.color = 'white';
+instructionsPopup.style.padding = '20px';
+instructionsPopup.style.display = 'block';
+document.body.appendChild(instructionsPopup);
+
+const instructionsContent = document.createElement('div');
+instructionsContent.innerHTML = '<h1>Instructions</h1><p>Use A, D, W, S keys to move. Press Space to jump. Avoid obstacles and survive as long as you can!</p><button id="startButton">Start</button>';
+instructionsContent.style.margin = 'auto';
+instructionsContent.style.textAlign = 'center';
+instructionsPopup.appendChild(instructionsContent);
+
+document.getElementById('startButton').addEventListener('click', () => {
+  instructionsPopup.style.display = 'none';
+  startGame();
+});
+
+function startGame() {
+  animate();
+}
+
 function loadModel(modelUrl, position, scale) {
   const loader = new GLTFLoader();
 
@@ -22,7 +48,6 @@ function loadModel(modelUrl, position, scale) {
   );
 }
 
-//Nghe sự kiện Bấm và Nhả Phím:
 const keyIndicators = {
   a: document.getElementById('keyA'),
   s: document.getElementById('keyS'),
@@ -31,7 +56,7 @@ const keyIndicators = {
 };
 
 function updateKeyIndicator(key, isPressed) {
-  keyIndicators[key].style.backgroundColor = isPressed ? '#4CAF50' : '#ddd'; // Change color when pressed
+  keyIndicators[key].style.backgroundColor = isPressed ? '#4CAF50' : '#ddd';
 }
 
 window.addEventListener('keydown', (event) => {
@@ -80,27 +105,25 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(4.61, 2.74, 8);
 
-const cubeModelUrl = 'model.gltf'; // Replace with the actual path to your cube model
+const cubeModelUrl = 'model.gltf';
 const cubePosition = { x: 0, y: 0, z: 0 };
 const cubeScale = 1;
 
-// Load model for the cube
 loadModel(cubeModelUrl, cubePosition, cubeScale);
 
 const backgroundTextureUrl = 'assets/photo-1465101162946-4377e57745c3.avif';
 const backgroundTexture = new TextureLoader().load(backgroundTextureUrl);
 
-const backgroundGeometry = new THREE.BoxGeometry(1000, 1000, 1000); // Adjust the size as needed
+const backgroundGeometry = new THREE.BoxGeometry(1000, 1000, 1000);
 const backgroundMaterial = new THREE.MeshBasicMaterial({ map: backgroundTexture, side: THREE.BackSide });
 const backgroundCube = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
 scene.add(backgroundCube);
-
-
 
 const renderer = new THREE.WebGLRenderer({
   alpha: true,
   antialias: true
 });
+
 renderer.shadowMap.enabled = true;
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -287,16 +310,6 @@ gameOverPopup.style.padding = '20px';
 gameOverPopup.style.display = 'none';
 document.body.appendChild(gameOverPopup);
 
-// const contentGameOver = document.createElement('div');
-// contentGameOver.textContent = 'Game over';
-// contentGameOver.style.margin = 'auto';
-// contentGameOver.style.textAlign = 'center';
-// gameOverPopup.appendChild(contentGameOver);
-
-function updatePassedEnemies() {
-  passedEnemies++;
-}
-
 const contentPoint = document.createElement('div');
 contentPoint.innerHTML = '<h1>Game Over</h1>';
 contentPoint.style.margin = 'auto';
@@ -314,10 +327,7 @@ restartGameOverButton.addEventListener('click', () => {
   isGameOver = false;
   passedEnemies = 0;
   gameOverPopup.style.display = 'none';
-  
-  console.log('check ckick')
   location.reload();
-  
 });
 
 const passedEnemiesElement = document.createElement('div');
@@ -327,11 +337,8 @@ passedEnemiesElement.style.left = '10px';
 passedEnemiesElement.style.color = 'white';
 document.body.appendChild(passedEnemiesElement);
 
-
-
 function displayPassedEnemies() {
   passedEnemiesElement.textContent = `Passed Enemies: ${passedEnemies}`;
-  console.log('abc', passedEnemies)
 }
 
 function displayGameOver() {
@@ -346,20 +353,10 @@ popupMesh.visible = false;
 scene.add(popupMesh);
 
 const popupText = document.createElement('div');
-// popupText.innerHTML = '<h1>Game Over</h1><p>Your Score: ' + passedEnemies + '</p>';
-// popupText.style.color = 'white';
-// popupText.style.textAlign = 'center';
-// popupText.style.marginTop = '30%';
 popupMesh.userData.text = popupText;
 document.body.appendChild(popupText);
 
 const restartPopupButton = document.createElement('button');
-// restartPopupButton.textContent = 'Restart';
-// restartPopupButton.style.padding = '10px';
-// restartPopupButton.style.marginTop = '10px';
-// restartPopupButton.style.cursor = 'pointer';
-// popupText.appendChild(restartPopupButton);
-
 restartPopupButton.addEventListener('click', () => {
   isGameOver = false;
   passedEnemies = 0;
@@ -374,8 +371,6 @@ restartPopupButton.addEventListener('click', () => {
 
   animate();
 });
-
-
 
 function animate() {
   if (isGameOver) {
@@ -400,7 +395,7 @@ function animate() {
     enemy.update(ground);
     if (cube.position.z < enemy.position.z && !enemy.passed) {
       enemy.passed = true;
-      updatePassedEnemies();
+      passedEnemies++;
     }
     if (boxCollision({ box1: cube, box2: enemy })) {
       isGameOver = true;
