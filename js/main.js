@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { TextureLoader } from 'three';
 
+//Nghe sự kiện Bấm và Nhả Phím:
 const keyIndicators = {
   a: document.getElementById('keyA'),
   s: document.getElementById('keyS'),
@@ -59,7 +60,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(4.61, 2.74, 8);
 
-const backgroundTextureUrl = 'assets/385007399_1285701365441291_6608515030540178832_n.jpg';
+const backgroundTextureUrl = 'assets/normal.jpg';
 const backgroundTexture = new TextureLoader().load(backgroundTextureUrl);
 
 const backgroundGeometry = new THREE.BoxGeometry(1000, 1000, 1000); // Adjust the size as needed
@@ -390,7 +391,7 @@ function animate() {
   if (frames % spawnRate === 0) {
     if (spawnRate > 20) spawnRate -= 20;
 
-    const enemyTextureUrl = 'assets/arid2_bk.jpg';
+    const enemyTextureUrl = 'assets/space.jpg';
     const enemy = new Box({
       width: 1,
       height: 1,
