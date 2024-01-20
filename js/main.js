@@ -331,7 +331,7 @@ const restartPopupButton = document.createElement('button');
 // restartPopupButton.style.padding = '10px';
 // restartPopupButton.style.marginTop = '10px';
 // restartPopupButton.style.cursor = 'pointer';
-popupText.appendChild(restartPopupButton);
+// popupText.appendChild(restartPopupButton);
 
 restartPopupButton.addEventListener('click', () => {
   isGameOver = false;
