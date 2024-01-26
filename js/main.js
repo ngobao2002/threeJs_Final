@@ -248,7 +248,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
 camera.position.z = 5;
 
-const keys = {
+const keys = { 
   a: { pressed: false },
   d: { pressed: false },
   s: { pressed: false },
